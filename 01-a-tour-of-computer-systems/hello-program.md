@@ -24,3 +24,31 @@ each with a value of 0 or 1, organized in 8-bit chunks called bytes.
 The hello.c program is stored in a file as a sequence of bytes. Each byte has an integer value that 
 corresponds to some character.
 
+Files such as hello.c that consist exclusively of ASCII characters are known as text files. 
+All other files are known as binary files.
+
+The representation of hello.c illustrates a fundamental idea: All information in a system—including 
+disk files, programs stored in memory, user data stored in memory, and data transferred 
+across a network—is represented as a bunch of bits. The only thing that distinguishes different data objects is 
+the context in which we view them.
+
+As programmers, we need to understand machine representations of numbers because 
+they are not the same as integers and real numbers. They are finite approximations that can behave in unexpected ways. 
+This fundamental idea is explored in detail in Chapter 2.
+
+```mermaid
+flowchart LR
+    A["Source program (text)"] -- "hello.c" --> B["Preprocessor (cpp)"]
+    B -- "hello.i" --> C["Compiler (cc1)"]
+    C -- "hello.s" --> D["Assembler (as)"]
+    D -- "hello.o" --> E["Linker (ld)"]
+    F["printf.o"] --> E
+    E -- "hello" --> G["Executable object program (binary)"]
+```
+The hello program begins life as a high-level C program because it can be read and understood by human beings in that form. 
+However, in order to run hello.c on the system, the individual C statements must be translated by other programs 
+into a sequence of low-level machine-language instructions. These instructions are then packaged in a form 
+called an executable object program and stored as a binary disk file. Object programs are also referred to as executable object files. 
+On a Unix system, the translation from source file to object files is performed by a compiler driver:
+
+
